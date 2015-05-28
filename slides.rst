@@ -79,6 +79,8 @@ What About Leiningen?
 
 More on that... later...
 
+.. image:: images/lein.jpg
+
 ----
 
 Enter The *Boot*
@@ -945,3 +947,20 @@ Use it to `Get Started With Clojure In < 10 Minutes <https://lionfacelemonface.w
 
 Or do more `Advanced Things <https://lionfacelemonface.wordpress.com/2015/04/11/advanced-boot-scripting/>`_, like distributing your scripts and ancillary data, building jars, running your own rudimentary maven repo, and post stuff to clojars.
 
+----
+
+Thanks
+======
+Thanks to Adzerk, Cognitect and all clojurists everywhere!
+
+----
+
+Image Credits
+=============
+
+.. image:: images/lein.jpg
+   :width: 15% 
+   
+"Winnie, the weiner dog, found the Twizzlers" http://imgur.com/H5pDMnu
+
+----
