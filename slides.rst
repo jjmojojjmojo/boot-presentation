@@ -93,6 +93,9 @@ What Is Boot?
 
 Boot incorporates concepts from all of the aforementioned build tools, and is chiefly used to implement build pipelines, but there's fundamental difference:
 
+.. image:: images/boot-logo.png
+   :width: 50%
+
 ----
 
 Boot Is *Not* A Build Tool.
@@ -127,6 +130,9 @@ Interacting with boot is like second nature:
 * Works from the REPL.
 
 For a clojurist, it's just doing more of what we already do: CLOJURE.
+
+.. image:: images/clojure-and-boot.png
+   :width: 25%
 
 ----
 
@@ -951,7 +957,7 @@ Or do more `Advanced Things <https://lionfacelemonface.wordpress.com/2015/04/11/
 
 Thanks
 ======
-Thanks to Adzerk, Cognitect and all clojurists everywhere!
+Thanks to the Boot project, Adzerk, Cognitect and all clojurists everywhere!
 
 ----
 
@@ -963,4 +969,12 @@ Image Credits
    
 "Winnie, the weiner dog, found the Twizzlers" http://imgur.com/H5pDMnu
 
-----
+.. image:: images/boot-logo.png
+   :width: 15%
+
+"Boot Logo" http://boot-clj.com/
+
+.. image:: images/clojure-and-boot.png
+   :width: 15%
+
+"Boot And Clojire" http://boot-clj.com/
