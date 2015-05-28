@@ -28,1261 +28,14 @@
     <title>Give Them The Boot</title>
     <!-- Styles -->
     
-    <style type="text/css" media="print">
-      * {
-    margin: 0;
-    padding: 0;
-}
-
-@page {
-    size: landscape;
-}
-
-body {
-    font: 100% "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-    padding: 0;
-    margin: 0;
-}
-
-div.slide {
-    min-width: 800px;
-    min-height: 600px;
-    padding: 1em;
-    overflow: hidden;
-    page-break-after: always;
-    border: 1px solid black;
-    border-radius: 20px;
-}
-
-div.slide div.inner {
-    width: 800px;
-    height: 600px;
-    margin: auto;
-}
-
-h1 {
-    font-size: 2.4em;
-}
-
-h2 {
-    font-size: 1.4em;
-}
-
-h3 {
-    margin: 1em 0;
-}
-
-ul {
-    margin: 0;
-    padding: 0;
-}
-
-p, li, pre {
-    margin: 1em 0;
-}
-
-li {
-    margin-left: 2em;
-}
-
-a {
-    color: #000000;
-}
-
-pre, code {
-    max-width: 800px;
-    background: #eee;
-    font-family: Monaco, monospace;
-    font-size: 90%;
-}
-
-pre {
-    padding: .2em .5em;
-    overflow: hidden;
-    border-radius: .8em;
-}
-
-code {
-    padding: 0 .2em;
-}
-
-.slide header:only-child h1 {
-  line-height: 180%;
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-  height: 600px;
-  width: 800px;
-  font-size: 48px;
-  margin-top:100px;
-  margin-bottom:100px;
-}
-
-#toc, #help, .slide aside, .slide footer, .slide .notes,
-.presenter_notes, #current_presenter_notes, #presenter_note {
-  display: none;
-}
-
-    </style>
-    <style type="text/css" media="screen, projection">
-      body {
-  font: 14px "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-  background: #778;
-  padding: 0;
-  margin: 0;
-  overflow: hidden;
-}
-
-div.presentation {
-  position: absolute;
-  width: 100%;
-  display: table-cell;
-  vertical-align: middle;
-  height: 100%;
-  background: inherit;
-}
-
-div.presentation > h1 {
-  display: none;
-}
-
-div.slides, body.expose div.slides.nocontext {
-  width: 100%;
-  height: 100%;
-  left: 0;
-  top: 0;
-  position: absolute;
-  display: block;
-}
-
-div.slides.nocontext {
-  width: 900px;
-  margin: 0 auto;
-  overflow: hidden;
-  position: relative;
-  left: auto;
-  top: auto;
-}
-
-div.slide {
-  display: inline;
-  position: absolute;
-  overflow: hidden;
-  width: 900px;
-  height: 700px;
-  margin-top: -350px;
-  margin-left: -400px;
-  left: 50%;
-  top: 50%;
-  background: -webkit-gradient(linear, left bottom, left top, from(#bbd), to(#fff));
-  background-color: #eee;
-  background: -moz-linear-gradient(bottom, #bbd, #fff);
-  -webkit-transition: margin 0.25s ease-in-out;
-  -moz-transition: margin 0.25s ease-in-out;
-  -o-transition: margin 0.25s ease-in-out;
-  border-top-left-radius: 20px;
-  -moz-border-radius-topleft: 20px;
-  -webkit-border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  -moz-border-radius-topright: 20px;
-  -webkit-border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  -moz-border-radius-bottomright: 20px;
-  -webkit-border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  -moz-border-radius-bottomleft: 20px;
-  -webkit-border-bottom-left-radius: 20px;
-}
-
-/* Expose */
-
-body.expose div.slides {
-  float: left;
-  position: relative;
-  overflow: auto;
-  margin-bottom: 10px;
-}
-
-body.expose div.slide {
-  display: block;
-  float: left;
-  position: relative;
-  left: auto !important;
-  top: auto !important;
-  margin: 10px !important;
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  -moz-transform: scale(.33, .33);
-  -moz-transform-origin: 0 0;
-  -webkit-transform: scale(.33, .33);
-  -webkit-transform-origin: 0 0;
-  -o-transform: scale(.33, .33);
-  -o-transform-origin: 0 0;
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  cursor: pointer;
-}
-
-body.expose div.slide:hover {
-  background: -webkit-gradient(linear, left bottom, left top, from(#bdd), to(#fff));
-  background-color: #eee;
-  background: -moz-linear-gradient(bottom, #bdd, #fff);
-}
-
-body.expose .slide-wrapper {
-  float: left;
-  position: relative;
-  margin: .5%;
-  width: 300px;
-  height: 233px;
-}
-
-body.expose .slide footer {
-}
-
-body.expose .slide .inner {
-}
-
-body.expose .slide.far-past,
-body.expose .slide.past,
-body.expose .slide.future,
-body.expose .slide.far-future {
-  margin-left: 0;
-}
-
-body.expose .slide.current {
-  background: -webkit-gradient(linear, left bottom, left top, from(#ddb), to(#fff));
-  background-color: #eee;
-  background: -moz-linear-gradient(bottom, #ddb, #fff);
-  border: 16px solid #fff;
-  -moz-transform: scale(.315, .315);
-  -moz-transform-origin: 0 0;
-  -webkit-transform: scale(.315, .315);
-  -webkit-transform-origin: 0 0;
-  -o-transform: scale(.315, .315);
-  -o-transform-origin: 0 0;
-}
-
-/* Presenter Mode */
-
-body.presenter_view div.slide {
-  display: inline;
-  position: absolute;
-  overflow: hidden;
-  -moz-transform: scale(.5, .5);
-  -moz-transform-origin: 0 0;
-  -webkit-transform: scale(.5, .5);
-  -webkit-transform-origin: 0 0;
-  -o-transform: scale(.5, .5);
-  -o-transform-origin: 0 0;
-    margin-top: -300px;
-}
-
-body.presenter_view .slide.far-past {
-  display: block;
-  margin-left: -1500px;
-}
-
-body.presenter_view .slide.past {
-  display: block;
-  margin-left: -975px;
-}
-
-body.presenter_view .slide.current {
-  display: block;
-  margin-left: -475px;
-  border: 8px solid maroon;
-  z-index: 2;
-}
-
-body.presenter_view .slide.future {
-  display: block;
-  margin-left: 25px;
-  z-index: 1;
-}
-
-body.presenter_view .slide.far-future {
-  display: block;
-  margin-left: 525px;
-}
-
-body.presenter_view div#current_presenter_notes {
-    visibility: visible;
-    display: block;
-    position: absolute;
-    overflow: auto;
-    vertical-align: middle;
-    left: 50%;
-    top: 50%;
-    margin-left: -475px;
-    margin-top: 100px;
-    z-index: 2;
-    width: 950px;
-    border-style: solid;
-    height: 30%;
-    background-color: silver;
-}
-
-body.presenter_view div#current_presenter_notes section {
-  font-family: "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-  color: black;
-  text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
-  display: block;
-  overflow: visible;
-    position: relative;
-    background-color: #fffeff;
-    height: 120px;
-    margin-right: 30px;
-    margin-top: 60px;
-    margin-left: 30px;
-    padding-right: 10px;
-    padding-left: 10px;
-    padding-top: 10px;
-}
-
-body.presenter_view div#current_presenter_notes section p {
-    margin: 0;
-}
-
-body.presenter_view div#current_presenter_notes h1 {
-    font-size: 50%;
-    display: block;
-}
-
-div#current_presenter_notes {
-  display: none;
-}
-
-div.slide div.presenter_notes, div.slides div.presenter_notes {
-  display: none;
-}
-
-/* Slide styles */
-
-div.slide p {
-  font-size: 20px;
-}
-
-.slide.far-past {
-  display: block;
-  margin-left: -2400px;
-}
-
-.slide.past {
-  display: block;
-  margin-left: -1400px;
-}
-
-.slide.current {
-  display: block;
-  margin-left: -450px;
-}
-
-.slide.future {
-  display: block;
-  margin-left: 500px;
-}
-
-.slide.far-future {
-  display: block;
-  margin-left: 1500px;
-}
-
-body.three-d div.slides {
-  -webkit-transform: translateX(50px) scale(0.8) rotateY(10deg);
-  -moz-transform: translateX(50px) scale(0.8) rotateY(10deg);
-  -o-transform: translateX(50px) scale(0.8) rotateY(10deg);
-}
-
-
-/* Content */
-
-header:not(:only-child) {
-  font-family: "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-  font-weight: normal;
-  font-size: 50px;
-  letter-spacing: -.05em;
-  color: black;
-  text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
-  position: absolute;
-  left: 30px;
-  top: 25px;
-  margin: 0;
-  padding: 0;
-}
-
-header h1, header h2, header h3, header h4, header h5, header h6 {
-  display: inline;
-  font-size: 100%;
-  font-weight: normal;
-  padding: 0;
-  margin: 0;
-}
-
-header h2:first-child {
-  margin-top: 0;
-}
-
-section, .slide header:only-child h1 {
-  font-family: "Lucida Grande", "Trebuchet MS", Verdana, sans-serif;
-  color: #3f3f3f;
-  text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
-  margin-left: 30px;
-  margin-right: 30px;
-  margin-top: 100px;
-  display: block;
-  overflow: hidden;
-}
-
-img { display: block; margin: auto; }
-
-section img.align-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-section img.align-right {
-  display: block;
-  margin-left: auto;
-  margin-right: 0;
-}
-
-section img.align-left {
-  display: block;
-  margin-right: auto;
-  margin-left: 0;
-}
-
-a {
-  color: inherit;
-  display: inline-block;
-  text-decoration: none;
-  line-height: 110%;
-  border-bottom: 2px solid #3f3f3f;
-}
-
-pre, code, tt {
-  font-family: Monaco, Consolas, 'Bitstream Vera Sans Mono', 'Lucida Console', FreeMono, Courier, monospace;
-}
-
-pre, .gist .gist-file .gist-data {
-  font-size: 18px;
-  max-height: 485px;
-  padding-top: 0.25em !important;
-  padding-right: 0.5em !important;
-  padding-left: 0.5em !important;
-  overflow: auto;
-}
-
-/* render a nice scrollbar in overflowed pre area's */
-::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
-}
-::-webkit-scrollbar-thumb {
-  background: -webkit-gradient(linear, left bottom, left top, from(#777), to(#bbd));
-  -webkit-border-radius: 1ex;
-}
-::-webkit-scrollbar-corner {
-  background: #dedede;
-}
-
-blockquote {
-  border-left: solid 8px #778;
-  padding: .1ex 1ex;
-  font-style: italic;
-  font-size: 20px;
-}
-
-li {
-  padding: 10px 0;
-  font-size: 20px;
-}
-
-li pre { margin-left: 0em; }
-
-.slide header:only-child h1 {
-  line-height: 180%;
-  text-align: center;
-  display: table-cell;
-  vertical-align: middle;
-  height: 700px;
-  width: 900px;
-  font-size: 50px;
-  margin-top:100px;
-  margin-bottom:100px;
-}
-
-.sidebar {
-  clear: both;
-  background: -webkit-gradient(linear, top right, bottom right, from(#dde), to(#fff));
-  -webkit-transition: margin 0.25s ease-in-out;
-  background-color: #eee;
-  background: -moz-linear-gradient(right, #dde, #fff);
-  border-right: 5px solid #ccd;
-  z-index: 9999999;
-  height: 100%;
-  overflow: hidden;
-  top: 0;
-  position: absolute;
-  display: block;
-  margin: 0;
-  margin-left: -400px;
-  padding: 10px 16px;
-  overflow: auto;
-  -webkit-transition: margin 0.2s ease-in-out;
-  -moz-transition: margin 0.2s ease-in-out;
-  -o-transition: margin 0.2s ease-in-out;
-}
-
-.sidebar h2 {
-  text-shadow: rgba(0, 0, 0, 0.2) 0 2px 5px;
-  margin: 0 0 16px;
-  padding: 0;
-}
-
-.sidebar table {
-  width: 100%;
-  margin: 0;
-  padding: 0;
-  border-collapse: collapse;
-}
-
-.sidebar table caption {
-  display: none;
-}
-
-.sidebar tr {
-  margin: 2px 0;
-  border-bottom: 1px solid #ccc;
-}
-
-.sidebar th {
-  text-align: left;
-  font-weight: normal;
-  max-width: 300px;
-  overflow: hidden;
-}
-
-.sidebar tr.sub th {
-  text-indent: 20px;
-}
-
-.sidebar td {
-  text-align: right;
-  min-width: 20px;
-}
-
-.sidebar a {
-  display: block;
-  text-decoration: none;
-  border-bottom: none;
-  padding: 4px 0;
-}
-
-.sidebar tr.active {
-  background: #ff0;
-}
-
-aside {
-  display: none;
-}
-  aside.source {
-    position: absolute;
-    bottom: 6px;
-    left: 10px;
-    text-indent: 10px;
-  }
-  aside.page_number {
-    position: absolute;
-    bottom: 6px;
-    right: 10px;
-    text-indent: 10px;
-  }
-
-.notes {
-  display: none;
-  padding: 10px;
-  background: #ccc;
-  border-radius: 10px;
-  -moz-border-radius: 10px;
-  -webkit-border-radius: 10px;
-}
-  div.slide p.notes {
-    font-size: 90%;
-}
-
-/* Pygments default theme */
-.hll { background-color: #ffffcc }
-.c { color: #408080; font-style: italic } /* Comment */
-.err { border: 1px solid #FF0000 } /* Error */
-.k { color: #008000; font-weight: bold } /* Keyword */
-.o { color: #666666 } /* Operator */
-.cm { color: #408080; font-style: italic } /* Comment.Multiline */
-.cp { color: #BC7A00 } /* Comment.Preproc */
-.c1 { color: #408080; font-style: italic } /* Comment.Single */
-.cs { color: #408080; font-style: italic } /* Comment.Special */
-.gd { color: #A00000 } /* Generic.Deleted */
-.ge { font-style: italic } /* Generic.Emph */
-.gr { color: #FF0000 } /* Generic.Error */
-.gh { color: #000080; font-weight: bold } /* Generic.Heading */
-.gi { color: #00A000 } /* Generic.Inserted */
-.go { color: #808080 } /* Generic.Output */
-.gp { color: #000080; font-weight: bold } /* Generic.Prompt */
-.gs { font-weight: bold } /* Generic.Strong */
-.gu { color: #800080; font-weight: bold } /* Generic.Subheading */
-.gt { color: #0040D0 } /* Generic.Traceback */
-.kc { color: #008000; font-weight: bold } /* Keyword.Constant */
-.kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
-.kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
-.kp { color: #008000 } /* Keyword.Pseudo */
-.kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
-.kt { color: #B00040 } /* Keyword.Type */
-.m { color: #666666 } /* Literal.Number */
-.s { color: #BA2121 } /* Literal.String */
-.na { color: #7D9029 } /* Name.Attribute */
-.nb { color: #008000 } /* Name.Builtin */
-.nc { color: #0000FF; font-weight: bold } /* Name.Class */
-.no { color: #880000 } /* Name.Constant */
-.nd { color: #AA22FF } /* Name.Decorator */
-.ni { color: #999999; font-weight: bold } /* Name.Entity */
-.ne { color: #D2413A; font-weight: bold } /* Name.Exception */
-.nf { color: #0000FF } /* Name.Function */
-.nl { color: #A0A000 } /* Name.Label */
-.nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
-.nt { color: #008000; font-weight: bold } /* Name.Tag */
-.nv { color: #19177C } /* Name.Variable */
-.ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
-.w { color: #bbbbbb } /* Text.Whitespace */
-.mf { color: #666666 } /* Literal.Number.Float */
-.mh { color: #666666 } /* Literal.Number.Hex */
-.mi { color: #666666 } /* Literal.Number.Integer */
-.mo { color: #666666 } /* Literal.Number.Oct */
-.sb { color: #BA2121 } /* Literal.String.Backtick */
-.sc { color: #BA2121 } /* Literal.String.Char */
-.sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
-.s2 { color: #BA2121 } /* Literal.String.Double */
-.se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
-.sh { color: #BA2121 } /* Literal.String.Heredoc */
-.si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
-.sx { color: #008000 } /* Literal.String.Other */
-.sr { color: #BB6688 } /* Literal.String.Regex */
-.s1 { color: #BA2121 } /* Literal.String.Single */
-.ss { color: #19177C } /* Literal.String.Symbol */
-.bp { color: #008000 } /* Name.Builtin.Pseudo */
-.vc { color: #19177C } /* Name.Variable.Class */
-.vg { color: #19177C } /* Name.Variable.Global */
-.vi { color: #19177C } /* Name.Variable.Instance */
-.il { color: #666666 } /* Literal.Number.Integer.Long */
-.lineno { padding-right: 10px } /* A few space after linenos */
-
-#blank {
-  position: absolute;
-  top: 0;
-  left: 0;
-  background-color: black;
-  width: 100%;
-  height: 100%;
-  z-index: 64;
-  display: none;
-}
-
-.image-reference {
-  display: inline;
-}
-
-    </style>
+    <link rel="stylesheet" media="print" href="file:///Users/jj/Projects/boot-presentation/theme/css/print.css">
+    <link rel="stylesheet" media="screen, projection" href="file:///Users/jj/Projects/boot-presentation/theme/css/screen.css">
     
     
     <!-- /Styles -->
     <!-- Javascripts -->
     
-    <script>
-      function main() {
-    // Since we don't have the fallback of attachEvent and
-    // other IE only stuff we won't try to run JS for IE.
-    // It will run though when using Google Chrome Frame
-    if (document.all) { return; }
-
-    var currentSlideNo;
-    var notesOn = false;
-    var expanded = false;
-    var hiddenContext = false;
-    var blanked = false;
-    var slides = document.getElementsByClassName('slide');
-    var touchStartX = 0;
-    var spaces = /\s+/, a1 = [''];
-    var tocOpened = false;
-    var helpOpened = false;
-    var overviewActive = false;
-    var modifierKeyDown = false;
-    var scale = 1;
-    var showingPresenterView = false;
-    var presenterViewWin = null;
-    var isPresenterView = false;
-
-    var str2array = function(s) {
-        if (typeof s == 'string' || s instanceof String) {
-            if (s.indexOf(' ') < 0) {
-                a1[0] = s;
-                return a1;
-            } else {
-                return s.split(spaces);
-            }
-        }
-        return s;
-    };
-
-    var trim = function(str) {
-        return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
-    };
-
-    var addClass = function(node, classStr) {
-        classStr = str2array(classStr);
-        var cls = ' ' + node.className + ' ';
-        for (var i = 0, len = classStr.length, c; i < len; ++i) {
-            c = classStr[i];
-            if (c && cls.indexOf(' ' + c + ' ') < 0) {
-                cls += c + ' ';
-            }
-        }
-        node.className = trim(cls);
-    };
-
-    var removeClass = function(node, classStr) {
-        var cls;
-        if (!node) {
-            throw 'no node provided';
-        }
-        if (classStr !== undefined) {
-            classStr = str2array(classStr);
-            cls = ' ' + node.className + ' ';
-            for (var i = 0, len = classStr.length; i < len; ++i) {
-                cls = cls.replace(' ' + classStr[i] + ' ', ' ');
-            }
-            cls = trim(cls);
-        } else {
-            cls = '';
-        }
-        if (node.className != cls) {
-            node.className = cls;
-        }
-    };
-
-    var getSlideEl = function(slideNo) {
-        if (slideNo > 0) {
-            return slides[slideNo - 1];
-        } else {
-            return null;
-        }
-    };
-
-    var getSlideTitle = function(slideNo) {
-        var el = getSlideEl(slideNo);
-        if (el) {
-            var headers = el.getElementsByTagName('header');
-            if (headers.length > 0) {
-                return el.getElementsByTagName('header')[0].innerText;
-            }
-        }
-        return null;
-    };
-
-    var getSlidePresenterNote = function(slideNo) {
-        var el = getSlideEl(slideNo);
-        if (el) {
-            var n = el.getElementsByClassName('presenter_notes');
-            if (n.length > 0) {
-                return n[0];
-            }
-        }
-        return null;
-    };
-
-    var changeSlideElClass = function(slideNo, className) {
-        var el = getSlideEl(slideNo);
-        if (el) {
-            removeClass(el, 'far-past past current future far-future');
-            addClass(el, className);
-        }
-    };
-
-    var updateSlideClasses = function(updateOther) {
-        window.location.hash = (isPresenterView ? "presenter" : "slide") + currentSlideNo;
-
-        for (var i=1; i<currentSlideNo-1; i++) {
-            changeSlideElClass(i, 'far-past');
-        }
-
-        changeSlideElClass(currentSlideNo - 1, 'past');
-        changeSlideElClass(currentSlideNo, 'current');
-        changeSlideElClass(currentSlideNo + 1, 'future');
-
-        for (i=currentSlideNo+2; i<slides.length+1; i++) {
-            changeSlideElClass(i, 'far-future');
-        }
-
-        highlightCurrentTocLink();
-
-        processContext();
-
-        document.getElementsByTagName('title')[0].innerText = getSlideTitle(currentSlideNo);
-
-        updatePresenterNotes();
-
-        if (updateOther) { updateOtherPage(); }
-    };
-
-    var updatePresenterNotes = function() {
-        if (!isPresenterView) { return; }
-
-        var existingNote = document.getElementById('current_presenter_notes');
-        var currentNote = getSlidePresenterNote(currentSlideNo).cloneNode(true);
-        currentNote.setAttribute('id', 'presenter_note');
-
-        existingNote.replaceChild(currentNote, document.getElementById('presenter_note'));
-    };
-
-    var highlightCurrentTocLink = function() {
-        var toc = document.getElementById('toc');
-
-        if (toc) {
-            var tocRows = toc.getElementsByTagName('tr');
-            for (var i=0; i<tocRows.length; i++) {
-                removeClass(tocRows.item(i), 'active');
-            }
-
-            var currentTocRow = document.getElementById('toc-row-' + currentSlideNo);
-            if (currentTocRow) {
-                addClass(currentTocRow, 'active');
-            }
-        }
-    };
-
-    var updateOtherPage = function() {
-        if (!showingPresenterView) { return; }
-
-        var w = isPresenterView ? window.opener : presenterViewWin;
-        w.postMessage('slide#' + currentSlideNo, '*');
-    };
-
-    var nextSlide = function() {
-        if (currentSlideNo < slides.length) {
-            currentSlideNo++;
-        }
-        updateSlideClasses(true);
-    };
-
-    var prevSlide = function() {
-        if (currentSlideNo > 1) {
-            currentSlideNo--;
-        }
-        updateSlideClasses(true);
-    };
-
-    var showNotes = function() {
-        var notes = getSlideEl(currentSlideNo).getElementsByClassName('notes');
-        for (var i = 0, len = notes.length; i < len; i++) {
-            notes.item(i).style.display = (notesOn) ? 'none':'block';
-        }
-        notesOn = !notesOn;
-    };
-
-    var showSlideNumbers = function() {
-        var asides = document.getElementsByClassName('page_number');
-        var hidden = asides[0].style.display != 'block';
-        for (var i = 0; i < asides.length; i++) {
-            asides.item(i).style.display = hidden ? 'block' : 'none';
-        }
-    };
-
-    var showSlideSources = function() {
-        var asides = document.getElementsByClassName('source');
-        var hidden = asides[0].style.display != 'block';
-        for (var i = 0; i < asides.length; i++) {
-            asides.item(i).style.display = hidden ? 'block' : 'none';
-        }
-    };
-
-    var showToc = function() {
-        if (helpOpened) {
-                showHelp();
-        }
-        var toc = document.getElementById('toc');
-        if (toc) {
-            toc.style.marginLeft = tocOpened ? '-' + (toc.clientWidth + 20) + 'px' : '0px';
-            tocOpened = !tocOpened;
-        }
-        updateOverview();
-    };
-
-    var showHelp = function() {
-        if (tocOpened) {
-                showToc();
-        }
-
-        var help = document.getElementById('help');
-
-        if (help) {
-            help.style.marginLeft = helpOpened ? '-' + (help.clientWidth + 20) + 'px' : '0px';
-            helpOpened = !helpOpened;
-        }
-    };
-
-    var showPresenterView = function() {
-        if (isPresenterView) { return; }
-
-        if (showingPresenterView) {
-            presenterViewWin.close();
-            presenterViewWin = null;
-            showingPresenterView = false;
-        } else {
-            presenterViewWin = open(window.location.pathname + "#presenter" + currentSlideNo, 'presenter_notes',
-                                                                    'directories=no,location=no,toolbar=no,menubar=no,copyhistory=no');
-            showingPresenterView = true;
-        }
-    };
-
-    var switch3D = function() {
-        if (document.body.className.indexOf('three-d') == -1) {
-            document.getElementsByClassName('presentation')[0].style.webkitPerspective = '1000px';
-            document.body.className += ' three-d';
-        } else {
-            window.setTimeout('document.getElementsByClassName(\'presentation\')[0].style.webkitPerspective = \'0\';', 2000);
-            document.body.className = document.body.className.replace(/three-d/, '');
-        }
-    };
-
-    var toggleOverview = function() {
-        if (!overviewActive) {
-            addClass(document.body, 'expose');
-            overviewActive = true;
-            setScale(1);
-        } else {
-            removeClass(document.body, 'expose');
-            overviewActive = false;
-            if (expanded) {
-                setScale(scale);    // restore scale
-            }
-        }
-        processContext();
-        updateOverview();
-    };
-
-    var updateOverview = function() {
-        try {
-            var presentation = document.getElementsByClassName('presentation')[0];
-        } catch (e) {
-            return;
-        }
-
-        if (isPresenterView) {
-            var action = overviewActive ? removeClass : addClass;
-            action(document.body, 'presenter_view');
-        }
-
-        var toc = document.getElementById('toc');
-
-        if (!toc) {
-            return;
-        }
-
-        if (!tocOpened || !overviewActive) {
-            presentation.style.marginLeft = '0px';
-            presentation.style.width = '100%';
-        } else {
-            presentation.style.marginLeft = toc.clientWidth + 'px';
-            presentation.style.width = (presentation.clientWidth - toc.clientWidth) + 'px';
-        }
-    };
-
-    var computeScale = function() {
-        var cSlide = document.getElementsByClassName('current')[0];
-        var sx = cSlide.clientWidth / window.innerWidth;
-        var sy = cSlide.clientHeight / window.innerHeight;
-        return 1 / Math.max(sx, sy);
-    };
-
-    var setScale = function(scale) {
-        var presentation = document.getElementsByClassName('slides')[0];
-        var transform = 'scale(' + scale + ')';
-        presentation.style.MozTransform = transform;
-        presentation.style.WebkitTransform = transform;
-        presentation.style.OTransform = transform;
-        presentation.style.msTransform = transform;
-        presentation.style.transform = transform;
-    };
-
-    var expandSlides = function() {
-        if (overviewActive) {
-            return;
-        }
-        if (expanded) {
-            setScale(1);
-            expanded = false;
-        } else {
-            scale = computeScale();
-            setScale(scale);
-            expanded = true;
-        }
-    };
-
-    var showContext = function() {
-        try {
-            var presentation = document.getElementsByClassName('slides')[0];
-            removeClass(presentation, 'nocontext');
-        } catch (e) {}
-    };
-
-    var hideContext = function() {
-        try {
-            var presentation = document.getElementsByClassName('slides')[0];
-            addClass(presentation, 'nocontext');
-        } catch (e) {}
-    };
-
-    var processContext = function() {
-        if (hiddenContext) {
-            hideContext();
-        } else {
-            showContext();
-        }
-    };
-
-    var toggleContext = function() {
-        hiddenContext = !hiddenContext;
-        processContext();
-    };
-
-    var toggleBlank = function() {
-        blank_elem = document.getElementById('blank');
-
-        blank_elem.style.display = blanked ? 'none' : 'block';
-
-        blanked = !blanked;
-    };
-
-    var isModifierKey = function(keyCode) {
-        switch (keyCode) {
-            case 16: // shift
-            case 17: // ctrl
-            case 18: // alt
-            case 91: // command
-                return true;
-                break;
-            default:
-                return false;
-                break;
-        }
-    };
-
-    var checkModifierKeyUp = function(event) {
-        if (isModifierKey(event.keyCode)) {
-            modifierKeyDown = false;
-        }
-    };
-
-    var checkModifierKeyDown = function(event) {
-        if (isModifierKey(event.keyCode)) {
-            modifierKeyDown = true;
-        }
-    };
-
-    var handleBodyKeyDown = function(event) {
-        switch (event.keyCode) {
-            case 13: // Enter
-                if (overviewActive) {
-                    toggleOverview();
-                }
-                break;
-            case 27: // ESC
-                toggleOverview();
-                break;
-            case 37: // left arrow
-            case 33: // page up
-                event.preventDefault();
-                prevSlide();
-                break;
-            case 39: // right arrow
-            case 32: // space
-            case 34: // page down
-                event.preventDefault();
-                nextSlide();
-                break;
-            case 50: // 2
-                if (!modifierKeyDown) {
-                        showNotes();
-                }
-                break;
-            case 51: // 3
-                if (!modifierKeyDown && !overviewActive) {
-                    switch3D();
-                }
-                break;
-            case 190: // .
-            case 48: // 0
-            case 66: // b
-                if (!modifierKeyDown && !overviewActive) {
-                    toggleBlank();
-                }
-                break;
-            case 67: // c
-                if (!modifierKeyDown && !overviewActive) {
-                    toggleContext();
-                }
-                break;
-            case 69: // e
-                if (!modifierKeyDown && !overviewActive) {
-                    expandSlides();
-                }
-                break;
-            case 72: // h
-                showHelp();
-                break;
-            case 78: // n
-                if (!modifierKeyDown && !overviewActive) {
-                    showSlideNumbers();
-                }
-                break;
-            case 80: // p
-                if (!modifierKeyDown && !overviewActive) {
-                    showPresenterView();
-                }
-                break;
-            case 83: // s
-                if (!modifierKeyDown && !overviewActive) {
-                    showSlideSources();
-                }
-                break;
-            case 84: // t
-                showToc();
-                break;
-        }
-    };
-
-    var handleWheel = function(event) {
-        if (tocOpened || helpOpened || overviewActive) {
-            return;
-        }
-
-        var delta = 0;
-
-        if (!event) {
-            event = window.event;
-        }
-
-        if (event.wheelDelta) {
-            delta = event.wheelDelta/120;
-            if (window.opera) delta = -delta;
-        } else if (event.detail) {
-            delta = -event.detail/3;
-        }
-
-        if (delta && delta <0) {
-            nextSlide();
-        } else if (delta) {
-            prevSlide();
-        }
-    };
-
-    var addSlideClickListeners = function() {
-        for (var i=0; i < slides.length; i++) {
-            var slide = slides.item(i);
-            slide.num = i + 1;
-            slide.addEventListener('click', function(e) {
-                if (overviewActive) {
-                    currentSlideNo = this.num;
-                    toggleOverview();
-                    updateSlideClasses(true);
-                    e.preventDefault();
-                }
-                return false;
-            }, true);
-        }
-    };
-
-    var addRemoteWindowControls = function() {
-        window.addEventListener("message", function(e) {
-            if (e.data.indexOf("slide#") != -1) {
-                    currentSlideNo = Number(e.data.replace('slide#', ''));
-                    updateSlideClasses(false);
-            }
-        }, false);
-    };
-
-    var addTouchListeners = function() {
-        document.addEventListener('touchstart', function(e) {
-            touchStartX = e.touches[0].pageX;
-        }, false);
-        document.addEventListener('touchend', function(e) {
-            var pixelsMoved = touchStartX - e.changedTouches[0].pageX;
-            var SWIPE_SIZE = 150;
-            if (pixelsMoved > SWIPE_SIZE) {
-                nextSlide();
-            }
-            else if (pixelsMoved < -SWIPE_SIZE) {
-             prevSlide();
-            }
-        }, false);
-    };
-
-    var addTocLinksListeners = function() {
-        var toc = document.getElementById('toc');
-        if (toc) {
-            var tocLinks = toc.getElementsByTagName('a');
-            for (var i=0; i < tocLinks.length; i++) {
-                tocLinks.item(i).addEventListener('click', function(e) {
-                    currentSlideNo = Number(this.attributes['href'].value.replace('#slide', ''));
-                    updateSlideClasses(true);
-                    e.preventDefault();
-                }, true);
-            }
-        }
-    };
-
-    // initialize
-
-    (function() {
-        if (window.location.hash == "") {
-            currentSlideNo = 1;
-        } else if (window.location.hash.indexOf("#presenter") != -1) {
-            currentSlideNo = Number(window.location.hash.replace('#presenter', ''));
-            isPresenterView = true;
-            showingPresenterView = true;
-            presenterViewWin = window;
-            addClass(document.body, 'presenter_view');
-        } else {
-            currentSlideNo = Number(window.location.hash.replace('#slide', ''));
-        }
-
-        document.addEventListener('keyup', checkModifierKeyUp, false);
-        document.addEventListener('keydown', handleBodyKeyDown, false);
-        document.addEventListener('keydown', checkModifierKeyDown, false);
-        document.addEventListener('DOMMouseScroll', handleWheel, false);
-
-        window.onmousewheel = document.onmousewheel = handleWheel;
-        window.onresize = expandSlides;
-
-        for (var i = 0, el; el = slides[i]; i++) {
-            addClass(el, 'slide far-future');
-        }
-        updateSlideClasses(false);
-
-        // add support for finger events (filter it by property detection?)
-        addTouchListeners();
-
-        addTocLinksListeners();
-
-        addSlideClickListeners();
-
-        addRemoteWindowControls();
-    })();
-}
-
-    </script>
+    <script type="text/javascript" src="file:///Users/jj/Projects/boot-presentation/theme/js/slides.js"></script>
     
     
     
@@ -1318,7 +71,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              1/53
+              1/67
             </aside>
           </footer>
         </div>
@@ -1348,7 +101,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              2/53
+              2/67
             </aside>
           </footer>
         </div>
@@ -1383,7 +136,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              3/53
+              3/67
             </aside>
           </footer>
         </div>
@@ -1419,7 +172,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              4/53
+              4/67
             </aside>
           </footer>
         </div>
@@ -1462,7 +215,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              5/53
+              5/67
             </aside>
           </footer>
         </div>
@@ -1505,7 +258,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              6/53
+              6/67
             </aside>
           </footer>
         </div>
@@ -1535,7 +288,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              7/53
+              7/67
             </aside>
           </footer>
         </div>
@@ -1563,7 +316,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              8/53
+              8/67
             </aside>
           </footer>
         </div>
@@ -1593,7 +346,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              9/53
+              9/67
             </aside>
           </footer>
         </div>
@@ -1621,7 +374,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              10/53
+              10/67
             </aside>
           </footer>
         </div>
@@ -1651,7 +404,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              11/53
+              11/67
             </aside>
           </footer>
         </div>
@@ -1682,7 +435,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              12/53
+              12/67
             </aside>
           </footer>
         </div>
@@ -1720,7 +473,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              13/53
+              13/67
             </aside>
           </footer>
         </div>
@@ -1748,7 +501,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              14/53
+              14/67
             </aside>
           </footer>
         </div>
@@ -1785,7 +538,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              15/53
+              15/67
             </aside>
           </footer>
         </div>
@@ -1813,7 +566,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              16/53
+              16/67
             </aside>
           </footer>
         </div>
@@ -1845,7 +598,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              17/53
+              17/67
             </aside>
           </footer>
         </div>
@@ -1882,7 +635,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              18/53
+              18/67
             </aside>
           </footer>
         </div>
@@ -1914,7 +667,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              19/53
+              19/67
             </aside>
           </footer>
         </div>
@@ -1944,7 +697,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              20/53
+              20/67
             </aside>
           </footer>
         </div>
@@ -1972,7 +725,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              21/53
+              21/67
             </aside>
           </footer>
         </div>
@@ -2003,7 +756,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              22/53
+              22/67
             </aside>
           </footer>
         </div>
@@ -2031,7 +784,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              23/53
+              23/67
             </aside>
           </footer>
         </div>
@@ -2062,7 +815,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              24/53
+              24/67
             </aside>
           </footer>
         </div>
@@ -2090,7 +843,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              25/53
+              25/67
             </aside>
           </footer>
         </div>
@@ -2122,7 +875,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              26/53
+              26/67
             </aside>
           </footer>
         </div>
@@ -2158,7 +911,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              27/53
+              27/67
             </aside>
           </footer>
         </div>
@@ -2196,7 +949,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              28/53
+              28/67
             </aside>
           </footer>
         </div>
@@ -2224,7 +977,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              29/53
+              29/67
             </aside>
           </footer>
         </div>
@@ -2252,7 +1005,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              30/53
+              30/67
             </aside>
           </footer>
         </div>
@@ -2286,7 +1039,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              31/53
+              31/67
             </aside>
           </footer>
         </div>
@@ -2330,7 +1083,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              32/53
+              32/67
             </aside>
           </footer>
         </div>
@@ -2368,7 +1121,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              33/53
+              33/67
             </aside>
           </footer>
         </div>
@@ -2396,7 +1149,7 @@ aside {
             </aside>
             
             <aside class="page_number">
-              34/53
+              34/67
             </aside>
           </footer>
         </div>
@@ -2439,7 +1192,7 @@ C:\&gt; move boot.exe C:\Windows\System32
             </aside>
             
             <aside class="page_number">
-              35/53
+              35/67
             </aside>
           </footer>
         </div>
@@ -2489,7 +1242,7 @@ OPTS:    -a --asset-paths PATH      Add PATH to <span class="nb">set </span>of a
             </aside>
             
             <aside class="page_number">
-              36/53
+              36/67
             </aside>
           </footer>
         </div>
@@ -2528,7 +1281,7 @@ Options:
             </aside>
             
             <aside class="page_number">
-              37/53
+              37/67
             </aside>
           </footer>
         </div>
@@ -2572,7 +1325,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              38/53
+              38/67
             </aside>
           </footer>
         </div>
@@ -2605,7 +1358,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              39/53
+              39/67
             </aside>
           </footer>
         </div>
@@ -2638,7 +1391,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              40/53
+              40/67
             </aside>
           </footer>
         </div>
@@ -2671,7 +1424,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              41/53
+              41/67
             </aside>
           </footer>
         </div>
@@ -2716,7 +1469,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              42/53
+              42/67
             </aside>
           </footer>
         </div>
@@ -2748,7 +1501,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              43/53
+              43/67
             </aside>
           </footer>
         </div>
@@ -2776,7 +1529,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              44/53
+              44/67
             </aside>
           </footer>
         </div>
@@ -2817,7 +1570,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              45/53
+              45/67
             </aside>
           </footer>
         </div>
@@ -2859,7 +1612,7 @@ Options:
             </aside>
             
             <aside class="page_number">
-              46/53
+              46/67
             </aside>
           </footer>
         </div>
@@ -2897,7 +1650,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              47/53
+              47/67
             </aside>
           </footer>
         </div>
@@ -2911,7 +1664,19 @@ slides.rst
             <header><h1>Task Option DSL</h1></header>
             
             
-            <section><p>Boot provides a powerful DSL for processing command line arguments for tasks.</p></section>
+            <section><p>Boot provides a powerful DSL for processing command line arguments for tasks.</p>
+<p>As part of the <code>deftask</code> macro, you specify the command-line arguments as specially formatted function arguments:</p>
+<table class="highlighttable"><tr><td class="linenos"><pre>1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="p">(</span><span class="nf">deftask</span> <span class="nv">cli-example</span>
+  <span class="s">&quot;This is the help text for this task&quot;</span>
+  <span class="p">[</span><span class="nv">f</span> <span class="nv">foo</span> <span class="nv">FOO</span> <span class="nb">str </span><span class="s">&quot;The foo option.&quot;</span>
+   <span class="nv">b</span> <span class="nv">bar</span> <span class="nb">int </span><span class="s">&quot;The bar option&quot;</span>
+   <span class="nv">c</span> <span class="nv">compound</span> <span class="nv">KEY</span><span class="ss">:VAL</span> <span class="p">{</span><span class="nv">kw</span> <span class="nv">str</span><span class="p">}</span> <span class="s">&quot;A compound option&quot;</span><span class="p">])</span>
+</pre>
+</td></tr></table></section>
             
           </div>
           <div class="presenter_notes">
@@ -2927,7 +1692,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              48/53
+              48/67
             </aside>
           </footer>
         </div>
@@ -2938,8 +1703,21 @@ slides.rst
         <div class="slide slide-49">
           <div class="inner">
             
-            <header><h1>Taking CLI Options</h1></header>
+            <header><h1>Task Option DSL</h1></header>
             
+            
+            <section><p>Each column in the argument definition has a special purpose:</p>
+<pre>[f foo FOO str &quot;The foo option.&quot;]
+ ↑  ↑   ↑   ↑          ↑
+ 1  2   3   4          5
+</pre>
+<ol class="arabic simple">
+<li>is the <em>short form</em> of the argument <code>-f</code></li>
+<li>is the <em>long form</em> and the name of the variable that will hold the value <code>--foo</code></li>
+<li>indicates this option takes an argument, <code>--foo FOO</code>. The text here will be presented to the user in the help text.</li>
+<li>tells the DSL how to marshal the data - all information provided on the command line is a <em>string</em>, this indicates what clojure type the value will be converted to.</li>
+<li>is the help text for the specific option.</li>
+</ol></section>
             
           </div>
           <div class="presenter_notes">
@@ -2955,7 +1733,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              49/53
+              49/67
             </aside>
           </footer>
         </div>
@@ -2966,10 +1744,24 @@ slides.rst
         <div class="slide slide-50">
           <div class="inner">
             
-            <header><h1>Using The Fileset</h1></header>
+            <header><h1>Task Option DSL</h1></header>
             
             
-            <section><p>Lets modify our task to uppercase all of the files in the fileset. This will require implementing some <em>middleware</em>.</p></section>
+            <section><p>Returning to our original example:</p>
+<table class="highlighttable"><tr><td class="linenos"><pre>1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="p">(</span><span class="nf">deftask</span> <span class="nv">cli-example</span>
+  <span class="s">&quot;This is the help text for this task&quot;</span>
+  <span class="p">[</span><span class="nv">f</span> <span class="nv">foo</span> <span class="nv">FOO</span> <span class="nb">str </span><span class="s">&quot;The foo option.&quot;</span>
+   <span class="nv">b</span> <span class="nv">bar</span> <span class="nb">int </span><span class="s">&quot;The bar option&quot;</span>
+   <span class="nv">c</span> <span class="nv">compound</span> <span class="nv">KEY</span><span class="ss">:VAL</span> <span class="p">{</span><span class="nv">kw</span> <span class="nv">str</span><span class="p">}</span> <span class="s">&quot;A compound option&quot;</span><span class="p">])</span>
+</pre>
+</td></tr></table><p>We see that this DSL defines <em>three</em> options:</p>
+<p><code>--foo</code>, which stores a <em>string</em></p>
+<p><code>--bar</code>, which <em>increments</em> an <em>integer</em></p>
+<p><code>--comound</code>, which constructs a <em>map</em> of <em>strings</em>, indexed by <em>keywords</em>.</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -2985,7 +1777,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              50/53
+              50/67
             </aside>
           </footer>
         </div>
@@ -2996,8 +1788,10 @@ slides.rst
         <div class="slide slide-51">
           <div class="inner">
             
-            <header><h1>Serve Static Files Within The Fileset</h1></header>
+            <header><h1>Super Awesome Bonus</h1></header>
             
+            
+            <section><p>When writing your own boot scripts, or any CLI tool, you can utlize the task option DSL for <em>any</em> function, using the <code>boot.cli/defclifn</code> macro!</p></section>
             
           </div>
           <div class="presenter_notes">
@@ -3013,7 +1807,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              51/53
+              51/67
             </aside>
           </footer>
         </div>
@@ -3022,6 +1816,405 @@ slides.rst
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
         <div class="slide slide-52">
+          <div class="inner">
+            
+            <header><h1>Taking CLI Options: Magic Vars</h1></header>
+            
+            
+            <section><p>The <code>deftask</code> macro processes our argument DSL and gives us two variables: <code>*args</code> and <code>*opts*</code>.</p>
+<p><code>*args*</code> is a sequence of <em>positional</em> arguments (not used in task definitions)</p>
+<p><code>*opts*</code> is a map of options/flags.</p>
+<pre><span class="p">(</span><span class="nf">deftask</span> <span class="nv">cli-example</span>
+  <span class="s">&quot;This is the help text for this task&quot;</span>
+  <span class="p">[</span><span class="nv">f</span> <span class="nv">foo</span> <span class="nv">FOO</span> <span class="nb">str </span><span class="s">&quot;The foo option.&quot;</span>
+   <span class="nv">b</span> <span class="nv">bar</span> <span class="nb">int </span><span class="s">&quot;The bar option - incrementer&quot;</span>
+   <span class="nv">c</span> <span class="nv">compound</span> <span class="nv">KEY</span><span class="ss">:VAL</span> <span class="p">{</span><span class="nv">kw</span> <span class="nv">str</span><span class="p">}</span> <span class="s">&quot;A compound option&quot;</span><span class="p">]</span>
+
+   <span class="p">(</span><span class="nb">prn </span><span class="nv">*opts*</span><span class="p">)</span>
+   <span class="p">(</span><span class="nb">prn </span><span class="nv">*args*</span><span class="p">))</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              52/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-53">
+          <div class="inner">
+            
+            <header><h1>Taking CLI Options: What You Get</h1></header>
+            
+            
+            <section><p>Running the example task now, we see in the help:</p>
+<pre><span class="nv">$ </span>boot cli-example -h
+This is the <span class="nb">help </span>text <span class="k">for</span> this task
+
+Options:
+  -h, --help              Print this <span class="nb">help </span>info.
+  -f, --foo FOO           Set the foo option to FOO.
+  -b, --bar               Increase the bar option - incrementer
+  -c, --compound KEY:VAL  Conj <span class="o">[</span>KEY VAL<span class="o">]</span> onto a compound option
+</pre>
+<p>And we can see what it looks like with a few options:</p>
+<pre><span class="nv">$ </span>boot cli-example -f <span class="s2">&quot;hello&quot;</span> -bbbb -c hey:there -c hi:there -c ho:there
+<span class="o">{</span>:foo <span class="s2">&quot;hello&quot;</span>, :bar 4, :compound <span class="o">{</span>:ho <span class="s2">&quot;there&quot;</span>, :hi <span class="s2">&quot;there&quot;</span>, :hey <span class="s2">&quot;there&quot;</span><span class="o">}}</span>
+<span class="o">[]</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              53/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-54">
+          <div class="inner">
+            
+            <header><h1>CLI FTW!</h1></header>
+            
+            
+            <section><p>Boot's task option DSL provides many, many possibilities.</p>
+<p>You can do some really amazing things with the boot task option DSL. It can save you a lot of time building a useful user interface.</p>
+<p>For discussion of all of the different kinds of arguments, see <a class="reference external" href="https://github.com/boot-clj/boot/wiki/Task-Options-DSL">Task Options DSL</a> in the Boot Wiki.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              54/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-55">
+          <div class="inner">
+            
+            <header><h1>Using The Fileset</h1></header>
+            
+            
+            <section><p>Here is a task to uppercase all of the files in the fileset.</p>
+<table class="highlighttable"><tr><td class="linenos"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre></td><td class="code"><pre><span class="p">(</span><span class="kd">defn </span><span class="nv">mv-uc</span>
+  <span class="s">&quot;Does the heavy lifting for uc-filenames below&quot;</span>
+  <span class="p">[</span><span class="nv">fileset</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">loop </span><span class="p">[</span><span class="nv">files</span> <span class="p">(</span><span class="ss">:tree</span> <span class="nv">fileset</span><span class="p">)</span> <span class="nv">fs</span> <span class="nv">fileset</span><span class="p">]</span>
+  <span class="p">(</span><span class="nb">if-let </span><span class="p">[[</span><span class="nv">source</span> <span class="nv">fileobj</span><span class="p">]</span> <span class="p">(</span><span class="nb">first </span><span class="nv">files</span><span class="p">)]</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">parts</span> <span class="p">(</span><span class="nf">string/split</span> <span class="p">(</span><span class="nb">str </span><span class="nv">source</span><span class="p">)</span> <span class="o">#</span><span class="s">&quot;/&quot;</span><span class="p">)</span>
+          <span class="nv">base</span> <span class="p">(</span><span class="nb">last </span><span class="nv">parts</span><span class="p">)</span> <span class="nv">parent</span> <span class="p">(</span><span class="nb">butlast </span><span class="nv">parts</span><span class="p">)</span>
+          <span class="nv">dest</span> <span class="p">(</span><span class="nf">string/join</span> <span class="s">&quot;/&quot;</span> <span class="p">(</span><span class="nb">concat </span><span class="nv">parent</span> <span class="p">[(</span><span class="nf">string/upper-case</span> <span class="nv">base</span><span class="p">)]))]</span>
+       <span class="p">(</span><span class="nf">recur</span>
+         <span class="p">(</span><span class="nb">dissoc </span><span class="nv">files</span> <span class="nv">source</span><span class="p">)</span>
+         <span class="p">(</span><span class="nf">mv</span> <span class="nv">fs</span> <span class="nv">source</span> <span class="nv">dest</span><span class="p">)))</span>
+    <span class="nv">fs</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="nf">deftask</span> <span class="nv">uc-filenames</span>
+  <span class="s">&quot;Moves all of the files in fileset to upper-case versions&quot;</span>
+  <span class="p">[]</span>
+  <span class="p">(</span><span class="k">fn </span><span class="nv">middleware</span> <span class="p">[</span><span class="nv">next-handler</span><span class="p">]</span>
+      <span class="p">(</span><span class="k">fn </span><span class="nv">handler</span> <span class="p">[</span><span class="nv">fileset</span><span class="p">]</span>
+        <span class="p">(</span><span class="nf">next-handler</span> <span class="p">(</span><span class="nf">mv-uc</span> <span class="nv">fileset</span><span class="p">)))))</span>
+</pre>
+</td></tr></table></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              55/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-56">
+          <div class="inner">
+            
+            <header><h1>Uppercase Fileset In Action</h1></header>
+            
+            
+            <section><p>Before using our new task. Note that we have to specify a source directory. We'll use the git checkout of this repository (.):</p>
+<pre><span class="go">$ boot -s . show -f</span>
+<span class="go">.git</span>
+<span class="go">├── HEAD</span>
+<span class="go">├── config</span>
+<span class="go">├── description</span>
+<span class="go">├── hooks</span>
+</pre>
+<p>And with our task in the pipeline:</p>
+<pre><span class="go">.git</span>
+<span class="go">├── CONFIG</span>
+<span class="go">├── DESCRIPTION</span>
+<span class="go">├── HEAD</span>
+<span class="go">├── INDEX</span>
+<span class="go">├── PACKED-REFS</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              56/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-57">
+          <div class="inner">
+            
+            <header><h1>Serve Static Files Within The Fileset</h1></header>
+            
+            
+            <section><p>This task looks for any files, and serves them files over HTTP.</p>
+<p>First, a simple ring application that will serve from a map of relative paths to absolute temporary paths:</p>
+<table class="highlighttable"><tr><td class="linenos"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></td><td class="code"><pre><span class="p">(</span><span class="kd">defn </span><span class="nv">mapper-app</span>
+  <span class="s">&quot;Given a map of relative paths to temporary locations, serve</span>
+<span class="s">   the files within if they are requested&quot;</span>
+  <span class="p">[</span><span class="nv">mapping</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">fn </span><span class="p">[</span><span class="nv">request</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">let </span><span class="p">[</span><span class="nv">uri</span> <span class="p">(</span><span class="nb">subs </span><span class="p">(</span><span class="ss">:uri</span> <span class="nv">request</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="nv">want</span> <span class="p">(</span><span class="nb">get </span><span class="nv">mapping</span> <span class="nv">uri</span><span class="p">)]</span>
+      <span class="p">(</span><span class="k">if </span><span class="nv">want</span>
+        <span class="p">(</span><span class="nf">file-response</span> <span class="p">(</span><span class="nf">tmp-path</span> <span class="nv">want</span><span class="p">)</span>
+        <span class="p">(</span><span class="nf">not-found</span> <span class="s">&quot;Not Found&quot;</span><span class="p">))))))</span>
+</pre>
+</td></tr></table></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              57/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-58">
+          <div class="inner">
+            
+            <header><h1>Serve Static Files Within The Fileset</h1></header>
+            
+            
+            <section><p>Next we'll build the task:</p>
+<table class="highlighttable"><tr><td class="linenos"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></td><td class="code"><pre><span class="p">(</span><span class="nf">deftask</span> <span class="nv">serve-source</span>
+  <span class="s">&quot;Serve all files in the source tree&quot;</span>
+  <span class="p">[</span><span class="nv">p</span> <span class="nv">port</span> <span class="nv">PORT</span> <span class="nb">int </span><span class="s">&quot;The port to listen on&quot;</span><span class="p">]</span>
+  <span class="p">(</span><span class="k">fn </span><span class="nv">middleware</span> <span class="p">[</span><span class="nv">next-handler</span><span class="p">]</span>
+    <span class="p">(</span><span class="k">fn </span><span class="nv">handler</span> <span class="p">[</span><span class="nv">fileset</span><span class="p">]</span>
+      <span class="p">(</span><span class="nf">jetty/run-jetty</span>
+        <span class="p">(</span><span class="nf">mapper-app</span> <span class="p">(</span><span class="ss">:tree</span> <span class="nv">fileset</span><span class="p">))</span>
+        <span class="p">{</span><span class="ss">:port</span> <span class="p">(</span><span class="nb">get </span><span class="nv">*opts*</span> <span class="ss">:port</span> <span class="mi">8080</span><span class="p">)}))))</span>
+</pre>
+</td></tr></table></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              58/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-59">
+          <div class="inner">
+            
+            <header><h1>Serve Static Files Within The Fileset</h1></header>
+            
+            
+            <section><p>In order for this to work, we need to provide a source directory. Since we haven't specified one in our <code>build.boot</code>, we'll have to do so on the command line with the <code>-s</code> option:</p>
+<pre><span class="go">$ bash -s . serve-source</span>
+<span class="go">2015-05-28 18:03:44.783:INFO:oejs.Server:jetty-7.6.13.v20130916</span>
+<span class="go">2015-05-28 18:03:44.806:INFO:oejs.AbstractConnector:Started SelectChannelConnector@0.0.0.0:8080</span>
+</pre>
+<p>Now if we open up <a class="reference external" href="http://127.0.0.1:8080/presentation.html">http://127.0.0.1:8080/presentation.html</a>, we'll see this very presentation.</p>
+<p>We'll also see something if we go to <a class="reference external" href="http://localhost:8080/.git/logs/HEAD">http://localhost:8080/.git/logs/HEAD</a></p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              59/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-60">
+          <div class="inner">
+            
+            <header><h1>Chaining Can Help</h1></header>
+            
+            
+            <section><p>Say we only want to serve .html files. We can use the <code>sift</code> task to filter the fileset:</p>
+<pre><span class="go">$ boot -s . sift -i &quot;.html$&quot; serve-source</span>
+</pre>
+<p>Now a request for <a class="reference external" href="http://localhost:8080/.git/logs/HEAD">http://localhost:8080/.git/logs/HEAD</a> will return a 404.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              60/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-61">
           <div class="inner">
             
             <header><h1>Using Pods</h1></header>
@@ -3041,7 +2234,7 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              52/53
+              61/67
             </aside>
           </footer>
         </div>
@@ -3049,7 +2242,7 @@ slides.rst
       
       <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide-53">
+        <div class="slide slide-62">
           <div class="inner">
             
             <header><h1>Run A Ring Application With Pods</h1></header>
@@ -3107,17 +2300,23 @@ slides.rst
             </aside>
             
             <aside class="page_number">
-              53/53
+              62/67
             </aside>
           </footer>
         </div>
       </div>
       
-      <!-- slide source:  -->
+      <!-- slide source: slides.rst -->
       <div class="slide-wrapper">
-        <div class="slide slide-">
+        <div class="slide slide-63">
           <div class="inner">
             
+            <header><h1>Working With Pipeline Modifiers</h1></header>
+            
+            
+            <section><p>We can match our webserver task with the watch task to automatically reload the webserver whenever source files change:</p>
+<pre><span class="go">$ boot watch webserver-isolated</span>
+</pre></section>
             
           </div>
           <div class="presenter_notes">
@@ -3128,8 +2327,157 @@ slides.rst
           </div>
           <footer>
             
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
             <aside class="page_number">
-              /53
+              63/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-64">
+          <div class="inner">
+            
+            <header><h1>Boot Scripts</h1></header>
+            
+            
+            <section><p>Boot scripts are like any other shell script, except:</p>
+<ul class="simple">
+<li>That they contain clojure code</li>
+<li>They get a <code>boot.user</code> namespace by default</li>
+<li>They have <code>boot.core</code> pre-loaded.</li>
+<li>A <code>-main</code> function is defined, that is loaded when the script is run.</li>
+<li>They have a <em>boot environment</em> that can declare dependencies.</li>
+<li>You can specify <em>source paths</em> for code to load external to the script, and <em>resources</em> to add additional files to the classpath.</li>
+</ul></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              64/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-65">
+          <div class="inner">
+            
+            <header><h1>Boot Scripts: Minimal Example</h1></header>
+            
+            
+            <section><p>This is the bare minimum boot script:</p>
+<table class="highlighttable"><tr><td class="linenos"><pre>1
+2
+3
+4
+5</pre></td><td class="code"><pre><span class="o">#</span><span class="nv">!/usr/bin/env</span> <span class="nv">boot</span>
+
+<span class="p">(</span><span class="kd">defn </span><span class="nv">-main</span>
+  <span class="p">[]</span>
+  <span class="p">(</span><span class="nb">println </span><span class="s">&quot;Hey There, Blimpy Boy&quot;</span><span class="p">))</span>
+</pre>
+</td></tr></table></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              65/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-66">
+          <div class="inner">
+            
+            <header><h1>Boot Scripts: Minimal Example</h1></header>
+            
+            
+            <section><p>By making this file executable, we can run it in the terminal:</p>
+<pre><span class="go">$ chmod +x minimal-script</span>
+<span class="go">$ ./minimal-script</span>
+<span class="go">&quot;Hey There, Blimpy Boy&quot;</span>
+</pre></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              66/67
+            </aside>
+          </footer>
+        </div>
+      </div>
+      
+      <!-- slide source: slides.rst -->
+      <div class="slide-wrapper">
+        <div class="slide slide-67">
+          <div class="inner">
+            
+            <header><h1>Scripting: What Next?</h1></header>
+            
+            
+            <section><p>Essentially, the entire clojure world is at your fingertips with boot scripting!</p>
+<p>Use it to <a class="reference external" href="https://lionfacelemonface.wordpress.com/2015/01/17/boot-getting-started-with-clojure-in-10-minutes/">Get Started With Clojure In &lt; 10 Minutes</a>.</p>
+<p>Or do more <a class="reference external" href="https://lionfacelemonface.wordpress.com/2015/04/11/advanced-boot-scripting/">Advanced Things</a>, like distributing your scripts and ancillary data, building jars, running your own rudimentary maven repo, and post stuff to clojars.</p></section>
+            
+          </div>
+          <div class="presenter_notes">
+            <header><h1>Presenter Notes</h1></header>
+            <section>
+            
+            </section>
+          </div>
+          <footer>
+            
+            <aside class="source">
+              Source: <a href="slides.rst">slides.rst</a>
+            </aside>
+            
+            <aside class="page_number">
+              67/67
             </aside>
           </footer>
         </div>
@@ -3432,32 +2780,116 @@ slides.rst
       
       
       <tr id="toc-row-49">
-        <th><a href="#slide49">Taking CLI Options</a></th>
+        <th><a href="#slide49">Task Option DSL</a></th>
         <td><a href="#slide49">49</a></td>
       </tr>
       
       
       <tr id="toc-row-50">
-        <th><a href="#slide50">Using The Fileset</a></th>
+        <th><a href="#slide50">Task Option DSL</a></th>
         <td><a href="#slide50">50</a></td>
       </tr>
       
       
       <tr id="toc-row-51">
-        <th><a href="#slide51">Serve Static Files Within The Fileset</a></th>
+        <th><a href="#slide51">Super Awesome Bonus</a></th>
         <td><a href="#slide51">51</a></td>
       </tr>
       
       
       <tr id="toc-row-52">
-        <th><a href="#slide52">Using Pods</a></th>
+        <th><a href="#slide52">Taking CLI Options: Magic Vars</a></th>
         <td><a href="#slide52">52</a></td>
       </tr>
       
       
       <tr id="toc-row-53">
-        <th><a href="#slide53">Run A Ring Application With Pods</a></th>
+        <th><a href="#slide53">Taking CLI Options: What You Get</a></th>
         <td><a href="#slide53">53</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-54">
+        <th><a href="#slide54">CLI FTW!</a></th>
+        <td><a href="#slide54">54</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-55">
+        <th><a href="#slide55">Using The Fileset</a></th>
+        <td><a href="#slide55">55</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-56">
+        <th><a href="#slide56">Uppercase Fileset In Action</a></th>
+        <td><a href="#slide56">56</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-57">
+        <th><a href="#slide57">Serve Static Files Within The Fileset</a></th>
+        <td><a href="#slide57">57</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-58">
+        <th><a href="#slide58">Serve Static Files Within The Fileset</a></th>
+        <td><a href="#slide58">58</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-59">
+        <th><a href="#slide59">Serve Static Files Within The Fileset</a></th>
+        <td><a href="#slide59">59</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-60">
+        <th><a href="#slide60">Chaining Can Help</a></th>
+        <td><a href="#slide60">60</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-61">
+        <th><a href="#slide61">Using Pods</a></th>
+        <td><a href="#slide61">61</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-62">
+        <th><a href="#slide62">Run A Ring Application With Pods</a></th>
+        <td><a href="#slide62">62</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-63">
+        <th><a href="#slide63">Working With Pipeline Modifiers</a></th>
+        <td><a href="#slide63">63</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-64">
+        <th><a href="#slide64">Boot Scripts</a></th>
+        <td><a href="#slide64">64</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-65">
+        <th><a href="#slide65">Boot Scripts: Minimal Example</a></th>
+        <td><a href="#slide65">65</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-66">
+        <th><a href="#slide66">Boot Scripts: Minimal Example</a></th>
+        <td><a href="#slide66">66</a></td>
+      </tr>
+      
+      
+      <tr id="toc-row-67">
+        <th><a href="#slide67">Scripting: What Next?</a></th>
+        <td><a href="#slide67">67</a></td>
       </tr>
       
       

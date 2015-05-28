@@ -594,27 +594,260 @@ Task Option DSL
 
 Boot provides a powerful DSL for processing command line arguments for tasks.
 
+As part of the :code:`deftask` macro, you specify the command-line arguments as specially formatted function arguments:
+
+.. code-block:: clojure
+   :linenos:
+   
+   (deftask cli-example
+     "This is the help text for this task"
+     [f foo FOO str "The foo option."
+      b bar int "The bar option"
+      c compound KEY:VAL {kw str} "A compound option"])
+     
+
 ----
 
-Taking CLI Options
-==================
+Task Option DSL
+===============
+Each column in the argument definition has a special purpose:
+
+.. code-block:: text
+   
+   [f foo FOO str "The foo option."]
+    ↑  ↑   ↑   ↑          ↑
+    1  2   3   4          5
+
+
+#. is the *short form* of the argument :code:`-f`
+#. is the *long form* and the name of the variable that will hold the value :code:`--foo`
+#. indicates this option takes an argument, :code:`--foo FOO`. The text here will be presented to the user in the help text. 
+#. tells the DSL how to marshal the data - all information provided on the command line is a *string*, this indicates what clojure type the value will be converted to.
+#. is the help text for the specific option.
+
+----
+
+Task Option DSL
+===============
+Returning to our original example:
+
+.. code-block:: clojure
+   :linenos:
+   
+   (deftask cli-example
+     "This is the help text for this task"
+     [f foo FOO str "The foo option."
+      b bar int "The bar option"
+      c compound KEY:VAL {kw str} "A compound option"])
+     
+
+We see that this DSL defines *three* options:
+
+:code:`--foo`, which stores a *string*
+
+:code:`--bar`, which *increments* an *integer*
+
+:code:`--comound`, which constructs a *map* of *strings*, indexed by *keywords*.
+
+----
+
+Super Awesome Bonus
+===================
+
+When writing your own boot scripts, or any CLI tool, you can utlize the task option DSL for *any* function, using the :code:`boot.cli/defclifn` macro!
+
+----
+
+Taking CLI Options: Magic Vars
+==============================
+
+The :code:`deftask` macro processes our argument DSL and gives us two variables: :code:`*args` and :code:`*opts*`.
+
+:code:`*args*` is a sequence of *positional* arguments (not used in task definitions)
+
+:code:`*opts*` is a map of options/flags.
+
+.. code-block:: clojure
+   
+   (deftask cli-example
+     "This is the help text for this task"
+     [f foo FOO str "The foo option."
+      b bar int "The bar option - incrementer"
+      c compound KEY:VAL {kw str} "A compound option"]
+      
+      (prn *opts*)
+      (prn *args*))
+      
+      
+
+----
+
+Taking CLI Options: What You Get
+================================
+Running the example task now, we see in the help: 
+
+.. code-block:: sh
+   
+   $ boot cli-example -h
+   This is the help text for this task
+   
+   Options:
+     -h, --help              Print this help info.
+     -f, --foo FOO           Set the foo option to FOO.
+     -b, --bar               Increase the bar option - incrementer
+     -c, --compound KEY:VAL  Conj [KEY VAL] onto a compound option
+
+And we can see what it looks like with a few options:
+
+.. code-block:: sh
+   
+   $ boot cli-example -f "hello" -bbbb -c hey:there -c hi:there -c ho:there
+   {:foo "hello", :bar 4, :compound {:ho "there", :hi "there", :hey "there"}}
+   []
+   
+
+----
+
+CLI FTW!
+========
+Boot's task option DSL provides many, many possibilities.
+
+You can do some really amazing things with the boot task option DSL. It can save you a lot of time building a useful user interface.
+
+For discussion of all of the different kinds of arguments, see `Task Options DSL <https://github.com/boot-clj/boot/wiki/Task-Options-DSL>`_ in the Boot Wiki.
 
 ----
 
 Using The Fileset
 =================
 
-Lets modify our task to uppercase all of the files in the fileset. This will require implementing some *middleware*.
+Here is a task to uppercase all of the files in the fileset.
 
 .. code-block:: clojure
    :linenos:
    
+   (defn mv-uc
+     "Does the heavy lifting for uc-filenames below"
+     [fileset]
+     (loop [files (:tree fileset) fs fileset]
+     (if-let [[source fileobj] (first files)]
+       (let [parts (string/split (str source) #"/")
+             base (last parts) parent (butlast parts)
+             dest (string/join "/" (concat parent [(string/upper-case base)]))]
+          (recur 
+            (dissoc files source)
+            (mv fs source dest)))
+       fs)))
+           
+   (deftask uc-filenames
+     "Moves all of the files in fileset to upper-case versions"
+     []
+     (fn middleware [next-handler]
+         (fn handler [fileset] 
+           (next-handler (mv-uc fileset)))))
+
+----
+
+Uppercase Fileset In Action
+===========================
+
+Before using our new task. Note that we have to specify a source directory. We'll use the git checkout of this repository (.):
+
+.. code-block:: shell-session
+   
+   $ boot -s . show -f
+   .git
+   ├── HEAD
+   ├── config
+   ├── description
+   ├── hooks
+   
+And with our task in the pipeline:
+
+.. code-block:: shell-session
+   
+   .git
+   ├── CONFIG
+   ├── DESCRIPTION
+   ├── HEAD
+   ├── INDEX
+   ├── PACKED-REFS
    
 
 ----
 
 Serve Static Files Within The Fileset
 =====================================
+
+This task looks for any files, and serves them files over HTTP.
+
+First, a simple ring application that will serve from a map of relative paths to absolute temporary paths:
+
+.. code-block:: clojure
+   :linenos:
+   
+   (defn mapper-app
+     "Given a map of relative paths to temporary locations, serve 
+      the files within if they are requested"
+     [mapping]
+     (fn [request]
+       (let [uri (subs (:uri request) 1)
+             want (get mapping uri)]
+         (if want
+           (file-response (tmp-path want)
+           (not-found "Not Found"))))))
+   
+
+----
+
+Serve Static Files Within The Fileset
+=====================================
+
+Next we'll build the task:
+
+.. code-block:: clojure
+   :linenos:
+   
+   (deftask serve-source
+     "Serve all files in the source tree"
+     [p port PORT int "The port to listen on"]
+     (fn middleware [next-handler]
+       (fn handler [fileset]
+         (jetty/run-jetty 
+           (mapper-app (:tree fileset)) 
+           {:port (get *opts* :port 8080)}))))
+           
+   
+
+----
+
+Serve Static Files Within The Fileset
+=====================================
+
+In order for this to work, we need to provide a source directory. Since we haven't specified one in our :code:`build.boot`, we'll have to do so on the command line with the :code:`-s` option:
+
+.. code-block:: shell-session
+   
+   $ bash -s . serve-source
+   2015-05-28 18:03:44.783:INFO:oejs.Server:jetty-7.6.13.v20130916
+   2015-05-28 18:03:44.806:INFO:oejs.AbstractConnector:Started SelectChannelConnector@0.0.0.0:8080
+   
+Now if we open up http://127.0.0.1:8080/presentation.html, we'll see this very presentation.
+
+We'll also see something if we go to http://localhost:8080/.git/logs/HEAD
+
+----
+
+Chaining Can Help
+=================
+
+Say we only want to serve .html files. We can use the :code:`sift` task to filter the fileset:
+
+.. code-block:: shell-session
+   
+   $ boot -s . sift -i ".html$" serve-source
+   
+Now a request for http://localhost:8080/.git/logs/HEAD will return a 404.
 
 ----
 
@@ -649,3 +882,66 @@ Run A Ring Application With Pods
           (.start server))))))
 
 ----
+
+Working With Pipeline Modifiers
+===============================
+We can match our webserver task with the watch task to automatically reload the webserver whenever source files change:
+
+.. code-block:: shell-session
+   
+   $ boot watch webserver-isolated
+   
+
+----
+   
+Boot Scripts
+============
+
+Boot scripts are like any other shell script, except:
+
+* That they contain clojure code
+* They get a :code:`boot.user` namespace by default
+* They have :code:`boot.core` pre-loaded.
+* A :code:`-main` function is defined, that is loaded when the script is run.
+* They have a *boot environment* that can declare dependencies.
+* You can specify *source paths* for code to load external to the script, and *resources* to add additional files to the classpath.
+
+----
+
+Boot Scripts: Minimal Example
+=============================
+
+This is the bare minimum boot script:
+
+.. code-block:: clojure
+   :linenos:
+   
+   #!/usr/bin/env boot
+         
+   (defn -main
+     []
+     (println "Hey There, Blimpy Boy"))
+     
+----
+
+Boot Scripts: Minimal Example
+=============================
+By making this file executable, we can run it in the terminal:
+
+.. code-block:: shell-session
+   
+   $ chmod +x minimal-script
+   $ ./minimal-script 
+   "Hey There, Blimpy Boy"
+   
+----
+
+Scripting: What Next?
+=====================
+
+Essentially, the entire clojure world is at your fingertips with boot scripting!
+
+Use it to `Get Started With Clojure In < 10 Minutes <https://lionfacelemonface.wordpress.com/2015/01/17/boot-getting-started-with-clojure-in-10-minutes/>`_.
+
+Or do more `Advanced Things <https://lionfacelemonface.wordpress.com/2015/04/11/advanced-boot-scripting/>`_, like distributing your scripts and ancillary data, building jars, running your own rudimentary maven repo, and post stuff to clojars.
+
