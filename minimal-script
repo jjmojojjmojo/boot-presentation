@@ -1,5 +1,0 @@
-#!/usr/bin/env boot
-      
-(defn -main
-  []
-  (println "Hey There, Blimpy Boy"))
